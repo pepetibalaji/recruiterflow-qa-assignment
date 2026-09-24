@@ -32,7 +32,7 @@ export const test = base.extend<AppFixtures>({
   loggedInProductsPage: async ({ loginPage, page }, use) => {
     await loginPage.goto();
     await loginPage.login("standard_user", "secret_sauce");
-    await expect(page).toHaveURL(/inventory\.html/);
+    await expect.soft(page).toHaveURL(/inventory\.html/);
 
     await use(new ProductsPage(page));
   },

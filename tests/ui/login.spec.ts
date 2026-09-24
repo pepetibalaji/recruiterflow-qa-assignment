@@ -8,8 +8,8 @@ test.describe("Login", () => {
     await loginPage.goto();
     await loginPage.login("standard_user", "secret_sauce");
 
-    await expect(page).toHaveURL(/inventory\.html/);
-    await expect(page.getByTestId("title")).toHaveText("Products");
+    await expect.soft(page).toHaveURL(/inventory\.html/);
+    await expect.soft(page.getByTestId("title")).toHaveText("Products");
   });
 
   test("locked-out user sees an error and is not logged in", async ({
@@ -19,9 +19,9 @@ test.describe("Login", () => {
     await loginPage.goto();
     await loginPage.login("locked_out_user", "secret_sauce");
 
-    await expect(loginPage.errorMessage).toHaveText(
+    await expect.soft(loginPage.errorMessage).toHaveText(
       "Epic sadface: Sorry, this user has been locked out.",
     );
-    await expect(page).toHaveURL(/saucedemo\.com\/?$/);
+    await expect.soft(page).toHaveURL(/saucedemo\.com\/?$/);
   });
 });

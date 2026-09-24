@@ -19,7 +19,7 @@ test.describe("Checkout", () => {
     });
     await checkoutPage.finishOrder();
 
-    await expect(checkoutPage.confirmationMessage).toHaveText(
+    await expect.soft(checkoutPage.confirmationMessage).toHaveText(
       "Thank you for your order!",
     );
   });

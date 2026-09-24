@@ -22,15 +22,15 @@ test.describe("ReqRes users API", () => {
   test("gets page two users with required fields", async ({ apiRequest }) => {
     const response = await apiRequest.get("/api/users?page=2");
 
-    expect(response.status()).toBe(200);
+    expect.soft(response.status()).toBe(200);
 
     const body = (await response.json()) as UsersResponse;
 
-    expect(body.data).toBeInstanceOf(Array);
-    expect(body.data.length).toBeGreaterThan(0);
+    expect.soft(body.data).toBeInstanceOf(Array);
+    expect.soft(body.data.length).toBeGreaterThan(0);
 
     for (const user of body.data) {
-      expect(user).toEqual(
+      expect.soft(user).toEqual(
         expect.objectContaining({
           id: expect.any(Number),
           email: expect.any(String),
@@ -58,11 +58,11 @@ test.describe("ReqRes users API", () => {
     const body = (await response.json()) as CreateUserResponse;
 
     await test.step("Verify the create response contract", async () => {
-      expect(response.status()).toBe(201);
-      expect(body).toMatchObject(userPayload);
-      expect(body.id).toBeTruthy();
-      expect(body.createdAt).toBeTruthy();
-      expect(new Date(body.createdAt).getTime()).not.toBeNaN();
+      expect.soft(response.status()).toBe(201);
+      expect.soft(body).toMatchObject(userPayload);
+      expect.soft(body.id).toBeTruthy();
+      expect.soft(body.createdAt).toBeTruthy();
+      expect.soft(new Date(body.createdAt).getTime()).not.toBeNaN();
     });
   });
 });
