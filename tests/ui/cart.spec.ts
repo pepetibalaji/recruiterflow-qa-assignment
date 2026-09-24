@@ -7,7 +7,7 @@ test.describe("Products and cart", () => {
     await loggedInProductsPage.addProductToCart("Sauce Labs Backpack");
     await loggedInProductsPage.addProductToCart("Sauce Labs Bike Light");
 
-    await expect(loggedInProductsPage.cartBadge).toHaveText("2");
+    await expect.soft(loggedInProductsPage.cartBadge).toHaveText("2");
   });
 
   test("sorts products by price from low to high", async ({
@@ -17,7 +17,7 @@ test.describe("Products and cart", () => {
 
     const displayedPrices = await loggedInProductsPage.getDisplayedPrices();
 
-    expect(displayedPrices).not.toHaveLength(0);
-    expect(displayedPrices[0]).toBe(Math.min(...displayedPrices));
+    expect.soft(displayedPrices).not.toHaveLength(0);
+    expect.soft(displayedPrices[0]).toBe(Math.min(...displayedPrices));
   });
 });
